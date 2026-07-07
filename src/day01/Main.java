@@ -1,3 +1,8 @@
+import day01.CorporateCustomer;
+import day01.Customer;
+import day01.IndividualCustomer;
+import day01.Product;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
