@@ -23,6 +23,6 @@ public class InMemoryBrandRepository implements BrandRepository{
 
     @Override
     public List<Brand> getAll(){
-       return brands;
+        return brands;
     }
 }

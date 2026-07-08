@@ -13,11 +13,11 @@ import java.util.List;
 @RequestMapping("/api/brands")
 public class BrandController {
     private BrandService brandService;
-    @Autowired
+@Autowired
     public BrandController(BrandService brandService) {
         this.brandService = brandService;
     }
-    @GetMapping("/getall")
+ @GetMapping("/getall")
     public List<Brand> getAll(){
         return brandService.getAll();
     }
