@@ -3,6 +3,8 @@ package com.enoca.rentACar.entities.concretes;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "brands")
 @Getter
@@ -16,6 +18,8 @@ public class Brand {
     private int id;
     @Column(name = "name")
     public String name;
+    @OneToMany(mappedBy = "brand")
+    private List<Model> models;
 
 
 }

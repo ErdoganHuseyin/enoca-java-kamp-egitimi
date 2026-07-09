@@ -6,6 +6,7 @@ import com.enoca.rentACar.business.requests.UpdateBrandRequest;
 import com.enoca.rentACar.business.responses.GetAllBrandsResponse;
 import com.enoca.rentACar.business.responses.GetByIdBrandsResponse;
 import com.enoca.rentACar.entities.concretes.Brand;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class BrandController {
 
     @PostMapping()
     @ResponseStatus(code= HttpStatus.CREATED)
-    public void add(@RequestBody CreateBrandRequest createBrandRequest){
+    public void add(@RequestBody @Valid CreateBrandRequest createBrandRequest){
         this.brandService.add(createBrandRequest);
     }
 

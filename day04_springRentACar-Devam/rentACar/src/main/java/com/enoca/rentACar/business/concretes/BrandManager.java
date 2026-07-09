@@ -5,6 +5,7 @@ import com.enoca.rentACar.business.requests.CreateBrandRequest;
 import com.enoca.rentACar.business.requests.UpdateBrandRequest;
 import com.enoca.rentACar.business.responses.GetAllBrandsResponse;
 import com.enoca.rentACar.business.responses.GetByIdBrandsResponse;
+import com.enoca.rentACar.business.rules.BrandBusinessRules;
 import com.enoca.rentACar.core.utilities.mappers.ModelMapperService;
 import com.enoca.rentACar.dataAccess.abstracts.BrandRepository;
 import com.enoca.rentACar.entities.concretes.Brand;
@@ -20,8 +21,9 @@ import java.util.List;
 //@RequiredArgsConstructor  (Bu anotasyon başlatması zorunlu olan değişkenlerin constructor'unu oluşturur mesela final bir değişkeninkini oluşturuken default bir değişkenne ait constructor oluşturmaz)
 public class BrandManager implements BrandService {
 //    private final BrandRepository brandRepository;  (bu yapıyı Constructor Injection kullanmak istediğimizde uygulamalıyız)
-    BrandRepository brandRepository;
-    ModelMapperService modelMapperService;
+    private BrandRepository brandRepository;
+    private ModelMapperService modelMapperService;
+    private BrandBusinessRules brandBusinessRules;
     @Override
      public List<GetAllBrandsResponse> getAll(){
        List<Brand> brands = brandRepository.findAll();
@@ -32,6 +34,7 @@ public class BrandManager implements BrandService {
 
     @Override
     public void add(CreateBrandRequest createBrandRequest) {
+        this.brandBusinessRules.checkIfBrandNameExists(createBrandRequest.getName());
         Brand brand = this.modelMapperService.forRequest().map(createBrandRequest,Brand.class);
         this.brandRepository.save(brand);
     }
